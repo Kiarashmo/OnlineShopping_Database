@@ -154,8 +154,13 @@ The schema includes the following tables:
 
 2. Create the database and tables:
    ```bash
-   mysql -u yourusername -p < schema.sql
+   mysql -u <your_mysql_username> -p < SQL_Code.sql
    ```
+
+3. Populate the database with sample data:
+  ```bash
+   mysql -u <your_mysql_username> -p < Data.sql
+  ```
 
 4. Set up the project environment using conda for the python files:
    ```bash
@@ -168,7 +173,7 @@ The schema includes the following tables:
 - Use the schema to manage the online shopping system.
 - Modify the schema as per your project's requirements.
 - Generate sample data using the `DataGenerator.py` script.
-- Use `SampleQuery.py` for sample query functions.
+- Use `SampleQueries.py` for sample query functions.
 - Ensure to handle the relationships and constraints appropriately.
 
 ## Contributing
