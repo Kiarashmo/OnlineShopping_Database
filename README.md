@@ -187,6 +187,6 @@ If you have any question feel free and email me: [Kiarash Mokhtari](mailto:mokht
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the GENERAL PUBLIC License. See the LICENSE file for details.
 
 
