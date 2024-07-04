@@ -161,9 +161,9 @@ The schema includes the following tables:
    ```
 
 3. Populate the database with sample data:
-  ```bash
-   mysql -u <your_mysql_username> -p < Data.sql
-  ```
+    ```bash
+    mysql -u <your_mysql_username> -p < Data.sql
+    ```
 
 4. Set up the project environment using conda for the python files:
    ```bash
