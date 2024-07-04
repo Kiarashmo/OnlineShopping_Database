@@ -2,6 +2,12 @@
 
 This repository contains the MySQL database schema for an online shopping system. The schema is designed to manage users, managers, products, categories, brands, orders, shopping carts, purchase history, comments, shipping information, and discounts.
 
+## ER Diagram
+
+![ER Diagram](Normalized_ER_Diagram/ER_Diagram.png)
+
+You can also view the ER diagram on [dbdiagram.io](https://dbdiagram.io/d/DB_Project_Phase1_9830032-6682ae039939893daeb973ae).
+
 ## Database Schema
 
 The schema includes the following tables:
@@ -123,9 +129,6 @@ The schema includes the following tables:
 - `product_id`: Foreign key to `Products`
 - `discount_id`: Foreign key to `Discounts`
 
-## ER Diagram
-
-![ER Diagram](Normalized_ER_Diagram/ER_Diagram.png)
 
 ## Folder Structure
 
@@ -148,7 +151,7 @@ The schema includes the following tables:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/OnlineShopping_Database.git
+   git clone https://github.com/Kiarashmo/OnlineShopping_Database.git
    cd OnlineShopping_Database
    ```
 
