@@ -7,7 +7,7 @@ conn = mysql.connector.connect(
     host="127.0.0.1",
     user="root",
     password="kia09381395696",
-    database="OnlineShopping"
+    database="onlineshopping"
 )
 cursor = conn.cursor()
 

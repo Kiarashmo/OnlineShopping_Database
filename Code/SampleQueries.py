@@ -165,7 +165,6 @@ def query_total_discount_by_product_last_month(connection):
     """
     return execute_select_query(connection, query)
 
-# Example of usage:
 if __name__ == "__main__":
     connection = create_connection()
 
