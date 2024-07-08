@@ -66,7 +66,7 @@ product_names = {
         'Coca-Cola': ['Coca-Cola Soda', 'Sprite', 'Fanta']
     },
     'Beauty': {
-        'L\'Oreal': ['L\'Oreal Shampoo', 'L\'Oreal Mascara', 'L\'Oreal Lipstick'],
+        'L\'Oreal': ['L\'Oreal Shampoo', 'L\'Oreal Mascara', 'L\'OReal Lipstick'],
         'Estee Lauder': ['Estee Lauder Foundation', 'Estee Lauder Serum', 'Estee Lauder Perfume'],
         'Procter & Gamble': ['Olay Cream', 'Pantene Shampoo', 'Gillette Razor'],
         'Niche': ['Dove Soap', 'Axe Deodorant', 'TRESemme Shampoo'],
@@ -92,9 +92,9 @@ comments = {
         "Exceeded my expectations.",
         "Excellent quality, will buy again.",
         "Highly recommended!",
-        "Fantastic value for money."
-        "Worst product ever."
-        "Terrible quality, very disappointed."
+        "Fantastic value for money.",
+        "Worst product ever.",
+        "Terrible quality, very disappointed.",
         "Very poor customer service."
     ],
     'inappropriate': [
@@ -128,9 +128,13 @@ def generate_users(n):
             name = faker.name()
             email = faker.email()
             contact_number = faker.phone_number()
-            address = faker.address()
-            cursor.execute("INSERT INTO Users (username, password, name, email, contact_number, address) VALUES (%s, %s, %s, %s, %s, %s)",
-                           (username, password, name, email, contact_number, address))
+            street = faker.street_address()
+            city = faker.city()
+            state = faker.state()
+            postal_code = faker.postcode()
+            country = faker.country()
+            cursor.execute("INSERT INTO Users (username, password, name, email, contact_number, street, city, state, postal_code, country) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                           (username, password, name, email, contact_number, street, city, state, postal_code, country))
         except mysql.connector.Error as err:
             print(f"Error: {err}")
             continue

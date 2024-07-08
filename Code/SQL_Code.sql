@@ -1,5 +1,5 @@
-CREATE DATABASE onlineshopping;
-USE onlineshopping;
+CREATE DATABASE OnlineShopping;
+USE OnlineShopping;
 
 CREATE TABLE Users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -8,7 +8,11 @@ CREATE TABLE Users (
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     contact_number VARCHAR(30),
-    address TEXT,
+    street VARCHAR(255),
+    city VARCHAR(100),
+    state VARCHAR(100),
+    postal_code VARCHAR(20),
+    country VARCHAR(100),
     registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
