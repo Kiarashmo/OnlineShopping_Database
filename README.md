@@ -30,16 +30,22 @@ The schema includes the following tables:
 ## Table Descriptions
 
 ### Users
+
 - `user_id`: Primary key, auto-increment
 - `username`: Unique, not null
 - `password`: Not null
 - `name`: Not null
 - `email`: Unique, not null
 - `contact_number`: Optional
-- `address`: Optional
+- `street`: Optional
+- `city`: Optional
+- `state`: Optional
+- `postal_code`: Optional
+- `country`: Optional
 - `registration_date`: Default to current timestamp
 
 ### Managers
+
 - `manager_id`: Primary key, auto-increment
 - `username`: Unique, not null
 - `password`: Not null
@@ -47,15 +53,18 @@ The schema includes the following tables:
 - `registration_date`: Default to current timestamp
 
 ### Categories
+
 - `category_id`: Primary key, auto-increment
 - `name`: Unique, not null
 
 ### Brands
+
 - `brand_id`: Primary key, auto-increment
 - `name`: Unique, not null
 - `status`: ENUM('active', 'inactive', 'old') DEFAULT 'active'
 
 ### Products
+
 - `product_id`: Primary key, auto-increment
 - `name`: Not null
 - `description`: Optional
@@ -67,6 +76,7 @@ The schema includes the following tables:
 - `status`: ENUM('active', 'inactive') DEFAULT 'active'
 
 ### Orders
+
 - `order_id`: Primary key, auto-increment
 - `user_id`: Foreign key to `Users`
 - `order_date`: Default to current timestamp
@@ -75,6 +85,7 @@ The schema includes the following tables:
 - `shipping_info_id`: Foreign key to `ShippingInfo`
 
 ### ShippingInfo
+
 - `shipping_info_id`: Primary key, auto-increment
 - `tracking_number`: Optional
 - `carrier`: Optional
@@ -83,6 +94,7 @@ The schema includes the following tables:
 - `status`: ENUM('pending', 'shipped', 'delivered', 'returned'), default 'pending'
 
 ### OrderDetails
+
 - `order_detail_id`: Primary key, auto-increment
 - `order_id`: Foreign key to `Orders`
 - `product_id`: Foreign key to `Products`
@@ -90,24 +102,28 @@ The schema includes the following tables:
 - `price`: Not null
 
 ### ShoppingCart
+
 - `cart_id`: Primary key, auto-increment
 - `user_id`: Foreign key to `Users`
 - `created_at`: Default to current timestamp
 - `updated_at`: Default to current timestamp
 
 ### CartItems
+
 - `cart_item_id`: Primary key, auto-increment
 - `cart_id`: Foreign key to `ShoppingCart`
 - `product_id`: Foreign key to `Products`
 - `quantity`: Not null
 
 ### PurchaseHistory
+
 - `history_id`: Primary key, auto-increment
 - `user_id`: Foreign key to `Users`
 - `order_id`: Foreign key to `Orders`
 - `purchase_date`: Default to current timestamp
 
 ### Comments
+
 - `comment_id`: Primary key, auto-increment
 - `product_id`: Foreign key to `Products`
 - `user_id`: Foreign key to `Users`
@@ -117,6 +133,7 @@ The schema includes the following tables:
 - `moderated_by`: Foreign key to `Managers`
 
 ### Discounts
+
 - `discount_id`: Primary key, auto-increment
 - `name`: Not null
 - `description`: Optional
@@ -125,23 +142,26 @@ The schema includes the following tables:
 - `end_date`: Optional
 
 ### ProductDiscounts
+
 - `product_discount_id`: Primary key, auto-increment
 - `product_id`: Foreign key to `Products`
 - `discount_id`: Foreign key to `Discounts`
 
-
 ## Folder Structure
 
 - **Code**
+
   - Contains the database SQL code and two Python files:
     - `DataGenerator.py`: Generates fake data for the database.
-    - `SampleQueries.py`: Contains sample query functions
+    - `SampleQueries.py`: Contains sample query functions and CLI for user and manager.
   - `environment.yml`: File to set up the project environment with conda.
 
 - **Documents**
+
   - Contains project documentation in Persian.
 
 - **Normalized ER Diagram**
+
   - Contains the normalized ER diagram designed for this database.
 
 - **Sample Generated Data**
@@ -150,20 +170,24 @@ The schema includes the following tables:
 ## Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/Kiarashmo/OnlineShopping_Database.git
    cd OnlineShopping_Database
+
    ```
 
 2. Create the database and tables:
+
    ```bash
    mysql -u <your_mysql_username> -p < SQL_Code.sql
    ```
 
 3. Populate the database with sample data:
-    ```bash
-    mysql -u <your_mysql_username> -p < Data.sql
-    ```
+
+   ```bash
+   mysql -u <your_mysql_username> -p < Data.sql
+   ```
 
 4. Set up the project environment using conda for the python files:
    ```bash
@@ -171,13 +195,63 @@ The schema includes the following tables:
    conda activate OnlineShopping
    ```
 
-## Usage
+### Running the Sample CLI
 
-- Use the schema to manage the online shopping system.
-- Modify the schema as per your project's requirements.
-- Generate sample data using the `DataGenerator.py` script.
-- Use `SampleQueries.py` for sample query functions.
-- Ensure to handle the relationships and constraints appropriately.
+- **User Sign Up**:
+
+  ```sh
+  python SampleQueries.py user sign_up --username johndoe --password securepassword --name "John Doe" --email john.doe@example.com --contact_number 123-456-7890 --street "123 Main St" --city Anytown --state Anystate --postal_code 12345 --country USA
+  ```
+
+- **User Login**:
+
+  ```sh
+  python SampleQueries.py user login --username johndoe --password securepassword
+  ```
+
+  - After logging in as a user, you will be prompted to choose a query:
+    ```plaintext
+    Choose a query:
+    1: Check brand availability
+    2: Check total spending in a month
+    3: List of user's orders
+    0: Exit
+    ```
+
+- **Manager Login**:
+
+  ```sh
+  python SampleQueries.py manager login --username admin --password adminpassword
+  ```
+
+  - After logging in as a manager, you will be prompted to choose a query:
+    ```plaintext
+    Choose a query:
+    1: Users with recent purchases
+    2: Total sales by category
+    3: Pending orders
+    4: Low stock products
+    5: High spending users
+    6: Add discount
+    7: Label comment inappropriate
+    8: Top selling products last month
+    9: Inactive brands and product count
+    10: Total discount by product last month
+    11: Custom query
+    0: Exit
+    ```
+
+- **Add Manager**:
+
+  ```sh
+  python SampleQueries.py manager add_manager --username newmanager --password newmanagerpassword --email new.manager@example.com
+  ```
+
+- **Custom Query**:
+
+  ```sh
+  python SampleQueries.py manager custom_query --query "SELECT * FROM Users"
+  ```
 
 ## Contributing
 
@@ -188,5 +262,3 @@ If you have any question feel free and email me: [Kiarash Mokhtari](mailto:mokht
 ## License
 
 This project is licensed under the GENERAL PUBLIC License. See the LICENSE file for details.
-
-
